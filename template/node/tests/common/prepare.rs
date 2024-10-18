@@ -17,7 +17,6 @@
 // limitations under the License.
 //! Prelude actions performed in most of the tests
 use crate::common::{consts::*, node::*, *};
-use alloy::primitives::Address;
 use serde_json::Deserializer;
 use std::{str::FromStr, sync::Once};
 
@@ -60,7 +59,6 @@ pub async fn node_and_contract<R: subxt::Config>(
     let contract = Contract {
         manifest_path,
         address,
-        addr: Address::from(address.0),
     };
 
     Env::new(node, Some(contract))

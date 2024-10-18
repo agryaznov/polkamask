@@ -15,11 +15,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-use crate::AccountId20;
-use alloy::primitives::Address;
-use futures::StreamExt;
-use node::{Protocol, TestNodeProcess};
-
 pub mod node;
 #[macro_use]
 pub mod macros;
@@ -33,21 +28,23 @@ pub mod consts {
     pub const NODE_BIN: &'static str = env!("CARGO_BIN_EXE_ethink-node");
     // TODO remove strs
     pub const ALITH_ADDRESS: &'static str = "0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac";
-    pub const ALITH: Address = address!("f24FF3a9CF04c71Dbc94D0b566f7A27B94566cac");
+    pub const ALITH_ADDR: Address = address!("f24FF3a9CF04c71Dbc94D0b566f7A27B94566cac");
     pub const ALITH_KEY: &'static str =
         "0x5fb92d6e98884f76de468fa3f6278f8807c48bebc13595d45af5bdc4da702133";
     pub const BALTATHAR_ADDRESS: &'static str = "0x3Cd0A705a2DC65e5b1E1205896BaA2be8A07c6e0";
-    pub const BALTATHAR: Address = address!("3Cd0A705a2DC65e5b1E1205896BaA2be8A07c6e0");
+    pub const BALTATHAR_ADDR: Address = address!("3Cd0A705a2DC65e5b1E1205896BaA2be8A07c6e0");
     pub const BALTATHAR_KEY: &'static str =
         "0x8075991ce870b93a8870eca0c0f91913d12f47948ca0fd25b49c6fa7cdbeee8b";
 }
 
+use crate::AccountId20;
+use futures::StreamExt;
+use node::{Protocol, TestNodeProcess};
+
 #[derive(Clone)]
 pub struct Contract {
     pub manifest_path: String,
-    // TODO rm
     pub address: AccountId20,
-    pub addr: Address,
 }
 
 // Testing environment, consisting of a node with a possibly deployed contract
@@ -61,18 +58,11 @@ impl<R: subxt::Config> Env<R> {
         Env { node, contract }
     }
 
-    // TODO rm
     pub fn contract_address(&self) -> AccountId20 {
         self.contract
             .as_ref()
             .expect("env does not have the contract deployed!")
             .address
-    }
-    pub fn contract_addr(&self) -> Address {
-        self.contract
-            .as_ref()
-            .expect("env does not have the contract deployed!")
-            .addr
     }
 
     pub fn contract_manifest_path(&self) -> String {
@@ -105,12 +95,10 @@ impl<R: subxt::Config> Env<R> {
                 .take(timeout);
 
             while let Some(block) = blocks_sub.next().await {
-                //                println!("next block events: ");
                 let block = block.expect("can't get next finalized block");
                 let events = block.events().await.expect("can't get events from block");
                 if let Some(_) = events.iter().find(|e| {
                     let event = e.as_ref().expect("failed to read event");
-                    //                    println!("{}.{}", &event.pallet_name(), &event.variant_name());
                     event.pallet_name().eq(pallet) && event.variant_name().eq(variant)
                 }) {
                     break;

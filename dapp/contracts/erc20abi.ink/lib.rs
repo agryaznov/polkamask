@@ -120,10 +120,10 @@ mod erc20 {
         ///
         /// Returns `0` if no allowance has been set.
         ///
-        /// Input len: ( 12 (padding) + 20 (accountId) ) x 2
+        /// Input len: 20 + 20 (accountId) + 12 (padding)
         /// Output len: 32 (U256)
         #[ink(message, selector = 0xdd62ed3e)]
-        pub fn allowance(&self, input: [u8; 64]) -> [u8; 32] {
+        pub fn allowance(&self, input: [u8; 52]) -> [u8; 32] {
             let (owner, spender) =
                 <(Address, Address)>::abi_decode_params(input.as_slice(), false).unwrap();
             Uint::<128>::abi_encode(&self.allowance_internal(**owner, **spender)).try_into().expect("ink: result value length is wrong")
@@ -152,9 +152,9 @@ mod erc20 {
         ///
         /// An `Approval` event is emitted.
         ///
-        /// Input len: 20 (accountId) + 32 (U256) + 12 (padding)
+        /// Input len: 20 (accountId) + 16 (U256) + 12 (padding)
         #[ink(message, selector = 0x095ea7b3)]
-        pub fn approve(&mut self, input: [u8; 64]) -> Result<()> {
+        pub fn approve(&mut self, input: [u8; 48]) -> Result<()> {
             let owner = self.env().caller();
             let (spender, value) =
                 <(Address, Amount)>::abi_decode_params(input.as_slice(), false).unwrap();
@@ -182,9 +182,9 @@ mod erc20 {
         /// Returns `InsufficientBalance` error if there are not enough tokens on
         /// the account balance of `from`.
         ///
-        /// Input len: ( 12 (padding) + 20 (accountId) ) x 2 + 32 (U256)
+        /// Input len: 20 + 20 (accountId) + 16 (U256) + 12 (padding)
         #[ink(message, selector = 0x23b872dd)]
-        pub fn transfer_from(&mut self, input: [u8; 96]) -> Result<()> {
+        pub fn transfer_from(&mut self, input: [u8; 68]) -> Result<()> {
             let caller = self.env().caller();
             let (from, to, value) =
                 <(Address, Address, Amount)>::abi_decode_params(input.as_slice(), false).unwrap();

@@ -40,17 +40,10 @@ pub mod flipper {
             self.value = !self.value;
         }
 
-        /// Returns SCALE-encoded current value of the Flipper's boolean.
+        /// Returns the current value of the Flipper's boolean.
         #[ink(message)]
         pub fn get(&self) -> bool {
             self.value
-        }
-        /// Returns ABI-encoded current value of the Flipper's boolean.
-        #[ink(message, selector = 0x6d4ce63c)]
-        pub fn get_abi_compat(&self) -> [u8; 32] {
-            let mut val = [0u8; 32];
-            val[31] = self.value as u8;
-            val
         }
     }
 

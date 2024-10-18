@@ -82,7 +82,7 @@ subxt = "0.37.0"
 sp-weights.workspace = true
 log.workspace = true
 hex.workspace = true
-alloy = { version= "0.4.2", features = ["providers", "sol-types", "json", "contract", "signers", "signer-local", "network"] }
+alloy = { version= "0.4.2", features = ["providers", "sol-types", "json", "contract"] }
 
 [features]
 default = []

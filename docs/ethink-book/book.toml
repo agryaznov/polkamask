@@ -4,7 +4,3 @@ language = "en"
 multilingual = false
 src = "src"
 title = "The ethink! Book"
-
-[output.html]
-default-theme = "light"
-preferred-dark-theme = "navy"

@@ -73,7 +73,7 @@ pub fn deploy(
         .expect("failed to instantiate with cargo-contract")
 }
 
-/// Call contract deployed to env thru Substrate RPC, and return the output
+/// Call contract deployed to env, and return the output
 pub fn call(
     env: &Env<PolkadotConfig>,
     msg: &str,

@@ -4,6 +4,3 @@
 [submodule "dapp/contracts/erc20.sol/lib/openzeppelin-contracts"]
 	path = dapp/contracts/erc20.sol/lib/openzeppelin-contracts
 	url = https://github.com/OpenZeppelin/openzeppelin-contracts
-[submodule "dapp/contracts/flipper2.sol/lib/forge-std"]
-	path = dapp/contracts/flipper2.sol/lib/forge-std
-	url = https://github.com/foundry-rs/forge-std

@@ -1,13 +1,13 @@
-# Flipper and Native Token Transfer
+# Demo 🧐
 
-Our little demo consists of the three basic actions we complete on our *Substrate*-based 🦑-network using *MetaMask*:
+Our little demo consists of the three basic actions we complete on our *Substrate*-based 🦆-network using *MetaMask*:
 
 1. **👛 Transfer Tokens**.
 
    With the MetaMask UI controls solely.
 
    This is the simplest action as we already have everything set up to do this. 
-   Once launched the ethink! node with `cargo run -- --dev`, just open your MetaMask and make sure it is connected to our Ethink! network. You should see *Alith* account holding `10000000 🦑`. Go ahead and send some amount of squinks to *Goliath* or any other account you'd like to ~~(set gas limit to `21000` as requested by MetaMask)~~. 
+   Once launched the ethink! node with `cargo run -- --dev`, just open your MetaMask and make sure it is connected to our 🦆 network. You should see *Alith* account holding `10000000 🥚`. Go ahead and send some amount of eggs to *Goliath* or any other account you'd like to (set gas limit to `21000` as requested by MetaMask). 
 
 2. **⚡ dApp (simple): Tokens Transfer**.
 
@@ -17,7 +17,7 @@ Our little demo consists of the three basic actions we complete on our *Substrat
 
    Call *ink!* smart contract via *web3js*-based dApp using  *MetaMask* for signing transactions.
 
-For the actions 2,3 we have a simple dApp which consists of a static [web page](https://github.com/agryaznov/ethink/blob/master/dapp/index.html) and of course our [**ink!** contract](https://github.com/agryaznov/ethink/blob/master/dapp/contracts/flipper.ink/lib.rs). This needs a bit of preparatory job to be done to set things up first.
+For the actions 2,3 we have a simple [dApp](/dapp) which consists of a static [web page](https://github.com/agryaznov/ethink/blob/master/dapp/index.html) and of course our [**ink!** contract](https://github.com/agryaznov/ethink/blob/master/dapp/contracts/flipper.ink/lib.rs). This needs a bit of preparatory job to be done to set things up first.
 
 
 ### Prepare
