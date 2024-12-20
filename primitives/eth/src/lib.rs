@@ -10,7 +10,7 @@ mod input;
 pub use input::{compose_and_sign_tx, ContractInput, EthTxInput};
 
 pub use account::AccountId20;
-pub use signing::EthereumSignature;
+pub use signing::{EthereumSignature, EthereumSigner};
 
 pub use ethereum::{
     AccessListItem, BlockV2 as Block, EnvelopedDecodable, EnvelopedEncodable, LegacyTransaction,
